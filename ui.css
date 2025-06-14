@@ -6,9 +6,17 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
 
+:root {
+    --bg: #140c2d;
+    --panel: #1a1333;
+    --text: #e0e0ff;
+    --accent: #ff0080;
+    --accent2: #00ffe6;
+}
+
 body {
-    background-color: #111;
-    color:white;
+    background-color: var(--bg);
+    color: var(--text);
     font-family: Orbitron, monospace;
 }
 
@@ -27,7 +35,7 @@ p {
 }
 
 a {
-    color:white;
+    color: var(--accent);
 }
 
 @media (max-width: 600px) {
@@ -38,10 +46,10 @@ a {
 
 .machine, .control-group {
 
-    background-color: black;
+    background-color: var(--panel);
     display: grid;
     grid-template-columns: 20px auto;
-    border: 1px solid #444444;
+    border: 1px solid var(--accent);
     margin:5px;
 }
 
@@ -50,7 +58,7 @@ a {
     transform: rotate(180deg);
     text-align: center;
     /* left because we're 180 rotated */
-    border-left: 1px solid #444444;
+    border-left: 1px solid var(--accent);
 }
 
 .machine .group {
@@ -90,9 +98,9 @@ a {
 }
 
 button, select, input {
-    color:white;
-    background-color: #111;
-    border: 1px solid #444;
+    color: var(--text);
+    background-color: var(--panel);
+    border: 1px solid var(--accent);
     text-align: center;
     cursor: pointer;
     font-family: Orbitron, monospace;
@@ -100,7 +108,7 @@ button, select, input {
 }
 
 button:hover, select:hover, input:hover {
-    background-color: #222;
+    background-color: #301a4b;
 }
 
 .dial {
@@ -113,7 +121,7 @@ button:hover, select:hover, input:hover {
 }
 
 .mutes .on {
-    background-color: #770000;
+    background-color: var(--accent);
 }
 
 .trigger-button {
@@ -185,18 +193,18 @@ button:hover, select:hover, input:hover {
 
 
 @keyframes wait-animate {
-    0% { background-color: black }
-    50% { background-color: red }
-    100% { background-color: black }
+    0% { background-color: var(--panel) }
+    50% { background-color: var(--accent) }
+    100% { background-color: var(--panel) }
 }
 
 button.waiting {
-    background-color: red;
+    background-color: var(--accent);
     animation: wait-animate 0.2s infinite;
 }
 
 .parameter-controlled {
-    background-color: #222266;
+    background-color: var(--accent2);
 }
 
 
@@ -212,9 +220,9 @@ button.waiting {
 }
 
 @keyframes autopilot-animate {
-    0% { background-color: #113311 }
-    50% { background-color: green }
-    100% { background-color: #113311 }
+    0% { background-color: var(--accent2) }
+    50% { background-color: var(--accent) }
+    100% { background-color: var(--accent2) }
 }
 /*@keyframes autopilot-border-animate {*/
 /*    0% { border: 1px solid #444 }*/

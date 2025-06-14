@@ -7,7 +7,7 @@
 import {Clock, pressToStart} from "./boilerplate.js";
 import {Audio, AudioT} from './audio.js';
 import {Midi, MidiT} from './midi.js';
-import {NineOhGen, ThreeOhGen} from "./pattern.js";
+import {NineOhGen, SynthwaveGen} from "./pattern.js";
 import {UI} from "./ui.js";
 import {
     DrumPattern,
@@ -457,10 +457,10 @@ async function NineOhUnit(audio: AudioT, midi: MidiT, bpm: NumericParameter): Pr
 }
 
 function DelayUnit(audio: AudioT): DelayUnit  {
-    const dryWet = parameter("Dry/Wet", [0,0.5], 0.5);
-    const feedback = parameter("Feedback", [0,0.9], 0.3);
+    const dryWet = parameter("Dry/Wet", [0,1], 0.6);
+    const feedback = parameter("Feedback", [0,0.9], 0.4);
     const delayTime = parameter("Time", [0,2], 0.3);
-    const delay = audio.DelayInsert(delayTime.value, dryWet.value, feedback.value);
+    const delay = audio.DelayInsert(delayTime.value, feedback.value, dryWet.value);
     dryWet.subscribe(w => delay.wet.value = w);
     feedback.subscribe(f => delay.feedback.value = f);
     delayTime.subscribe(t => delay.delayTime.value = t);
@@ -569,7 +569,7 @@ function AutoPilot(state: ProgramState): AutoPilotUnit {
 }
 
 function ClockUnit(): ClockUnit {
-    const bpm = parameter("BPM", [70,200],142);
+    const bpm = parameter("BPM", [70,200],90);
     const currentStep = parameter("Current Step", [0,15],0);
     const clockImpl = Clock(bpm.value, 4, 0.0);
 
@@ -590,11 +590,11 @@ async function start() {
     const delay = DelayUnit(audio);
     clock.bpm.subscribe(b => delay.delayTime.value = (3/4) * (60/b));
 
-    const gen = ThreeOhGen();
+    const gen = SynthwaveGen();
     const programState: ProgramState = {
         notes: [
-            ThreeOhUnit(audio, midi, "sawtooth", delay.inputNode, clock.bpm, gen),
-            ThreeOhUnit(audio, midi, "square", delay.inputNode, clock.bpm, gen)
+            ThreeOhUnit(audio, midi, "triangle", delay.inputNode, clock.bpm, gen),
+            ThreeOhUnit(audio, midi, "sawtooth", delay.inputNode, clock.bpm, gen)
         ],
         drums: await NineOhUnit(audio, midi, clock.bpm),
         gen,
@@ -634,4 +634,4 @@ catch (error) {
     console.log("Error accessing MIDI devices: " + error);
 }
 
-pressToStart(start, "Spicy Endless Acid Banger", "A collaboration between human and algorithm by Vitling, spiced up by Zykure");
+pressToStart(start, "Endless Synthwave Generator", "A collaboration between human and algorithm by Vitling, extended by Zykure, reimagined by webdesignerdesjahres");
