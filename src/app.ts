@@ -457,10 +457,10 @@ async function NineOhUnit(audio: AudioT, midi: MidiT, bpm: NumericParameter): Pr
 }
 
 function DelayUnit(audio: AudioT): DelayUnit  {
-    const dryWet = parameter("Dry/Wet", [0,0.5], 0.5);
-    const feedback = parameter("Feedback", [0,0.9], 0.3);
+    const dryWet = parameter("Dry/Wet", [0,1], 0.6);
+    const feedback = parameter("Feedback", [0,0.9], 0.4);
     const delayTime = parameter("Time", [0,2], 0.3);
-    const delay = audio.DelayInsert(delayTime.value, dryWet.value, feedback.value);
+    const delay = audio.DelayInsert(delayTime.value, feedback.value, dryWet.value);
     dryWet.subscribe(w => delay.wet.value = w);
     feedback.subscribe(f => delay.feedback.value = f);
     delayTime.subscribe(t => delay.delayTime.value = t);
@@ -593,8 +593,8 @@ async function start() {
     const gen = SynthwaveGen();
     const programState: ProgramState = {
         notes: [
-            ThreeOhUnit(audio, midi, "sawtooth", delay.inputNode, clock.bpm, gen),
-            ThreeOhUnit(audio, midi, "square", delay.inputNode, clock.bpm, gen)
+            ThreeOhUnit(audio, midi, "triangle", delay.inputNode, clock.bpm, gen),
+            ThreeOhUnit(audio, midi, "sawtooth", delay.inputNode, clock.bpm, gen)
         ],
         drums: await NineOhUnit(audio, midi, clock.bpm),
         gen,
