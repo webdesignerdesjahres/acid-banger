@@ -1,4 +1,4 @@
-# Spicy Endless Acid Banger
+# Endless Synthwave Generator
 
 An algorithmic human-computer techno jam - now even more spicy
 
