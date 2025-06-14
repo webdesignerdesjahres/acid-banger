@@ -7,7 +7,7 @@
 import {Clock, pressToStart} from "./boilerplate.js";
 import {Audio, AudioT} from './audio.js';
 import {Midi, MidiT} from './midi.js';
-import {NineOhGen, ThreeOhGen} from "./pattern.js";
+import {NineOhGen, SynthwaveGen} from "./pattern.js";
 import {UI} from "./ui.js";
 import {
     DrumPattern,
@@ -569,7 +569,7 @@ function AutoPilot(state: ProgramState): AutoPilotUnit {
 }
 
 function ClockUnit(): ClockUnit {
-    const bpm = parameter("BPM", [70,200],142);
+    const bpm = parameter("BPM", [70,200],90);
     const currentStep = parameter("Current Step", [0,15],0);
     const clockImpl = Clock(bpm.value, 4, 0.0);
 
@@ -590,7 +590,7 @@ async function start() {
     const delay = DelayUnit(audio);
     clock.bpm.subscribe(b => delay.delayTime.value = (3/4) * (60/b));
 
-    const gen = ThreeOhGen();
+    const gen = SynthwaveGen();
     const programState: ProgramState = {
         notes: [
             ThreeOhUnit(audio, midi, "sawtooth", delay.inputNode, clock.bpm, gen),
@@ -634,4 +634,4 @@ catch (error) {
     console.log("Error accessing MIDI devices: " + error);
 }
 
-pressToStart(start, "Spicy Endless Acid Banger", "A collaboration between human and algorithm by Vitling, spiced up by Zykure");
+pressToStart(start, "Endless Synthwave Generator", "A collaboration between human and algorithm by Vitling, extended by Zykure, reimagined by webdesignerdesjahres");
