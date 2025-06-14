@@ -59,7 +59,7 @@ export function Midi(midiAccess: any, noteLength: number = 100) {
 
     function OutputDevice(portID: string | number, midiCh: number) {
         function noteOn(note: FullNote | number, velocity: number = 100, length: number = 100, offset: number = 0) {
-            if (note < 0)
+            if (typeof note === 'number' && note < 0)
                 return;
             const midiNote = typeof(note) === 'number' ? note + 60 - 12 : textNoteToNumber(note);  // number is relative to C0
             const noteOnMessage = [0x90 + midiCh, midiNote + offset, velocity];
@@ -73,7 +73,7 @@ export function Midi(midiAccess: any, noteLength: number = 100) {
         }
 
         function noteOff(note: FullNote | number, offset: number = 0) {
-            if (note < 0)
+            if (typeof note === 'number' && note < 0)
                 return;
             var midiNote = typeof(note) === 'number' ? note + 60 - 12 : textNoteToNumber(note);  // number is relative to C0 
             midiNote += offset;
