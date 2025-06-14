@@ -1,4 +1,4 @@
-# The Endless Synthwave Generator
+# Endless Synthwave Generator
 
 An algorithmic human-computer techno jam - now even more synthy
 

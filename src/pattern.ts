@@ -74,6 +74,59 @@ export function ThreeOhGen(): NoteGenerator {
     }
 }
 
+export function SynthwaveGen(): NoteGenerator {
+    let noteSet: GeneralisedParameter<FullNote[]> = genericParameter("note set", ['C3']);
+    let newNotes: Trigger = trigger("new note set", true);
+    const density = 0.8;
+
+    const offsetChoices = [
+        [0, 3, 7, 12],
+        [0, 3, 7, 10, 12],
+        [0, 5, 7, 12],
+        [0, 3, 5, 7, 10, 12],
+        [0, 3, 7, 12, 15]
+    ];
+
+    function changeNotes() {
+        const root = rndInt(12) + 36;
+        const offsets: number[] = choose(offsetChoices);
+        noteSet.value = offsets.map(o => midiNoteToText(o + root));
+    }
+
+    function createPattern(): Pattern {
+        if (newNotes.value == true) {
+            changeNotes();
+            newNotes.value = false;
+        }
+        const pattern: Slot[] = [];
+
+        for (let i = 0; i < 16; i++) {
+            const chance = density * (i % 4 === 0 ? 0.9 : 0.5);
+            if (Math.random() < chance) {
+                pattern.push({
+                    note: choose(noteSet.value),
+                    accent: Math.random() < 0.1,
+                    glide: Math.random() < 0.05
+                })
+            } else {
+                pattern.push({
+                    note: "-",
+                    accent: false,
+                    glide: false
+                })
+            }
+        }
+
+        return pattern;
+    }
+
+    return {
+        createPattern,
+        newNotes,
+        noteSet
+    }
+}
+
 export function NineOhGen() {
     function createPatterns(full: boolean = false) {
         const bdPattern: number[] = new Array(16);
