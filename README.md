@@ -2,7 +2,7 @@
 
 An algorithmic human-computer techno jam - now even more synthy
 
-![Screenshot](https://github.com/zykure/acid-banger/blob/main/preview.png?raw=true)
+![Screenshot](https://github.com/webdesignerdesjahres/acid-banger/blob/main/preview.png?raw=true)
 
 Built in Typescript with the WebAudio API.
 
