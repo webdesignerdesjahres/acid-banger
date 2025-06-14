@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
+set -e
+
 if [ ! -d node_modules ]; then
-    npm install @types/webmidi && npm audit fix --force
+    npm install --no-save typescript webpack webpack-cli @types/webmidi
 fi
 
 npx tsc -p . || exit $?
