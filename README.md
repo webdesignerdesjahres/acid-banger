@@ -6,7 +6,7 @@ An algorithmic human-computer techno jam - now even more synthy
 
 Built in Typescript with the WebAudio API.
 
-Live version running at [**zykure.github.io/acid-banger**](https://webdesignerdesjahres.github.io/acid-banger/)
+Live version running at [**webdesignerdesjahres.github.io/acid-banger**](https://webdesignerdesjahres.github.io/acid-banger/)
 
 Many thanks to [vitling](https://music.vitling.xyz) for creating this awesome project! Please consider supporting his work (see below)
 
