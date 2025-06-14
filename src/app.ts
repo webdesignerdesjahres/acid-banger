@@ -634,4 +634,4 @@ catch (error) {
     console.log("Error accessing MIDI devices: " + error);
 }
 
-pressToStart(start, "Endless Synthwave Generator", "A collaboration between human and algorithm by Vitling, spiced up by Zykure");
+pressToStart(start, "Endless Synthwave Generator", "A collaboration between human and algorithm by Vitling, spiced up by Zykure, reimagined by webdesignerdesjahres");
