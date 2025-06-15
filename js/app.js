@@ -537,8 +537,8 @@ function start() {
         const gen = SynthwaveGen();
         const programState = {
             notes: [
-                ThreeOhUnit(audio, midi, "triangle", delay.inputNode, clock.bpm, gen),
-                ThreeOhUnit(audio, midi, "sawtooth", delay.inputNode, clock.bpm, gen)
+                ThreeOhUnit(audio, midi, "sawtooth", delay.inputNode, clock.bpm, gen),
+                ThreeOhUnit(audio, midi, "square", delay.inputNode, clock.bpm, gen)
             ],
             drums: yield NineOhUnit(audio, midi, clock.bpm),
             gen,
