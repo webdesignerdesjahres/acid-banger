@@ -37,7 +37,7 @@ export function Dial(initial: number, bounds: [number, number], text?: string, d
         g.stroke();
 
         if (fadeCounter > 0) {
-            g.strokeStyle = "rgba(0,255,0," + clamp(fadeCounter/10) + ")";
+            g.strokeStyle = "rgba(0,255,230," + clamp(fadeCounter/10) + ")";
             g.lineWidth = w / 8;
             const pos = arc[0] + normalizedValue * (arc[1] - arc[0]);
             g.beginPath();

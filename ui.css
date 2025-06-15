@@ -234,6 +234,10 @@ button.waiting {
     animation: autopilot-animate 2s infinite;
 }
 
+.autopilot-button {
+    color: var(--bg);
+}
+
 
 h2 {
     text-align: center;

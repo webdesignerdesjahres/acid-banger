@@ -18,15 +18,15 @@ import {Dial, RangeSelect} from "./dial.js";
 import {midiControlPresets, midiDrumPresets} from "./app.js";
 
 const defaultColors = {
-    bg: "#222266",
-    note: "#88aacc",
-    accent: "#AA88CC",
+    bg: "#140c2d",
+    note: "#00ffe6",
+    accent: "#ff0080",
     glide: "#CCAA88",
-    text: "#CCCCFF",
+    text: "#e0e0ff",
     highlight: "rgba(255,255,255,0.2)",
     grid1: "rgba(255,255,255,0.1)",
     grid2: "rgba(255,255,255,0.3)",
-    dial: "#AA88CC"
+    dial: "#ff0080"
 }
 type ColorScheme = { [color in keyof typeof defaultColors]: string; };
 
@@ -438,7 +438,7 @@ function AudioMeter(analyser: AnalyserNode) {
         g.fillStyle = "white";
         for (let i =0 ; i < freqOutput.length; i++) {
             const v = freqOutput[i] / 256;
-            g.fillStyle = 'rgb(' + (freqOutput[i]/2 + 128) + ',0,0)';
+            g.fillStyle = '#ff0080';
             g.fillRect(w * i/freqOutput.length, h - 1.0 * v * h, w/freqOutput.length, 1.0 * v * h);
         }
 
